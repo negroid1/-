@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="client_id" />
           </Key>
-          <Property Name="client_id" Type="int" Nullable="false" />
+          <Property Name="client_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="named" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="sername" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="last_name" Type="varchar" MaxLength="30" />
@@ -18,7 +18,7 @@
           <Key>
             <PropertyRef Name="order_id" />
           </Key>
-          <Property Name="order_id" Type="int" Nullable="false" />
+          <Property Name="order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="order_date" Type="date" />
           <Property Name="staff_id" Type="int" />
           <Property Name="product_id" Type="int" />
@@ -29,7 +29,7 @@
           <Key>
             <PropertyRef Name="product_id" />
           </Key>
-          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="named" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="cost" Type="int" Nullable="false" />
           <Property Name="info" Type="nvarchar(max)" />
@@ -38,7 +38,7 @@
           <Key>
             <PropertyRef Name="service_id" />
           </Key>
-          <Property Name="service_id" Type="int" Nullable="false" />
+          <Property Name="service_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="named" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="cost" Type="int" Nullable="false" />
           <Property Name="info" Type="nvarchar(max)" />
@@ -47,7 +47,7 @@
           <Key>
             <PropertyRef Name="staff_id" />
           </Key>
-          <Property Name="staff_id" Type="int" Nullable="false" />
+          <Property Name="staff_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="named" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="sername" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="last_name" Type="varchar" MaxLength="30" />
@@ -132,7 +132,7 @@
           <Key>
             <PropertyRef Name="client_id" />
           </Key>
-          <Property Name="client_id" Type="Int32" Nullable="false" />
+          <Property Name="client_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="named" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="sername" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="last_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -142,7 +142,7 @@
           <Key>
             <PropertyRef Name="order_id" />
           </Key>
-          <Property Name="order_id" Type="Int32" Nullable="false" />
+          <Property Name="order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="order_date" Type="DateTime" Precision="0" />
           <Property Name="staff_id" Type="Int32" />
           <Property Name="product_id" Type="Int32" />
@@ -157,7 +157,7 @@
           <Key>
             <PropertyRef Name="product_id" />
           </Key>
-          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="named" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="cost" Type="Int32" Nullable="false" />
           <Property Name="info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -167,7 +167,7 @@
           <Key>
             <PropertyRef Name="service_id" />
           </Key>
-          <Property Name="service_id" Type="Int32" Nullable="false" />
+          <Property Name="service_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="named" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="cost" Type="Int32" Nullable="false" />
           <Property Name="info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -177,7 +177,7 @@
           <Key>
             <PropertyRef Name="staff_id" />
           </Key>
-          <Property Name="staff_id" Type="Int32" Nullable="false" />
+          <Property Name="staff_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="named" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="sername" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="last_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />

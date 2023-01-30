@@ -15,24 +15,26 @@ namespace автомастерская
     
     public partial class car_dealershipEntities1 : DbContext
     {
-
         public static car_dealershipEntities1 _context;
+
         public car_dealershipEntities1()
             : base("name=car_dealershipEntities1")
         {
         }
-        public static car_dealershipEntities1 GetContext()
-        { 
-            if (_context == null)
-                _context= new car_dealershipEntities1();
-
-            return _context;
-        }
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
+        public static car_dealershipEntities1 GetContext()
+        {
+            if (_context == null)
+                _context = new car_dealershipEntities1();
+
+            return _context;
+        }
+
         public virtual DbSet<clientes> clientes { get; set; }
         public virtual DbSet<orders> orders { get; set; }
         public virtual DbSet<products> products { get; set; }

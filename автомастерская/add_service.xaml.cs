@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,27 +21,54 @@ namespace автомастерская
     /// </summary>
     public partial class add_service : Window
     {
-        private add_service _curentaddservice = new add_service();
+        private services curentservice = new services();
 
-        public add_service()
+        public add_service(services selecectedservice )
         {
             InitializeComponent();
-            DataContext= _curentaddservice;
+
+            if (selecectedservice != null)
+            {
+                curentservice = selecectedservice;
+            }
+            DataContext = curentservice;
         }
 
         private void btn_out_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = false;
+           DialogResult = false;
         }
 
         private void btn_add_service_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder errors = new StringBuilder();
 
-            if (string.IsNullOrWhiteSpace(_curentaddservice.Name))
+            if (string.IsNullOrWhiteSpace(curentservice.named))
                 errors.AppendLine("Укажите название услуги");
-            if (_curentaddservice.info == null)
+            if (curentservice.info == null)
                 errors.AppendLine("Добавьте информацию об услуге");
-        }
+
+            if (errors.Length > 0)
+            {
+                MessageBox.Show(errors.ToString());
+                return;
+            }
+      
+            if (errors.Length == 0)
+            {
+                car_dealershipEntities1.GetContext().services.Add(curentservice);
+                try
+                {
+                    car_dealershipEntities1.GetContext().SaveChanges(); 
+                    MessageBox.Show("Информация сохранена");
+                    DialogResult = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
+         }
+
     }
 }

@@ -15,11 +15,12 @@
         </Grid.RowDefinitions>
         <TextBlock Text="Сервисы" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="25" FontFamily="Tw Cen MT" Margin="380,0,0,0" Grid.Row="0"></TextBlock>
         <Button Name="btn_add_service" Content="Добавить" HorizontalAlignment="Right" Margin="0 40 500 0" Grid.Row="0" Click="add_service_Click"></Button>
-        <Button Name="delete_service" Content="Удалить" HorizontalAlignment="Right" Margin="0 40 340 0" Grid.Row="0"></Button>
-        <Button Name="edit_service" Content="Редактировать" HorizontalAlignment="Right" Margin="0 40 180 0" Grid.Row="0"></Button>
+        <Button Name="delete_service" Content="Удалить" HorizontalAlignment="Right" Margin="0 40 340 0" Grid.Row="0" Click="DeleteServiceClick"></Button>
+        <Button Name="edit_service" Content="Редактировать" HorizontalAlignment="Right" Margin="0 40 180 0" Grid.Row="0" Click="EditServiceClick"></Button>
         <Button Name="refresh_service" Content="Обновить" HorizontalAlignment="Right" Margin="0 40 40 0" Grid.Row="0"></Button>
         <DataGrid x:Name="DGridservice" Grid.Row="1" Margin= "0 0 20 0 " AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер услуги" Binding="{Binding service_id}" Width="35"></DataGridTextColumn>
                 <DataGridTextColumn Header="Название" Binding="{Binding named}" Width="100"></DataGridTextColumn>
                 <DataGridTextColumn Header="Цена услуги" Binding="{Binding cost}" Width="80"></DataGridTextColumn>
                 <DataGridTextColumn Header="Информация об услуге" Binding="{Binding info}" Width="*"></DataGridTextColumn>
