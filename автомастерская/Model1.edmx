@@ -5,14 +5,25 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Хранилище car_dealershipModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="clientes">
+        <EntityType Name="Client">
           <Key>
-            <PropertyRef Name="client_id" />
+            <PropertyRef Name="ClientId" />
           </Key>
-          <Property Name="client_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="named" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="sername" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="last_name" Type="varchar" MaxLength="30" />
+          <Property Name="ClientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ClientSername" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ClientLastName" Type="varchar" MaxLength="30" />
+          <Property Name="ClientPhoto" Type="binary" MaxLength="1" />
+          <Property Name="ClientMail" Type="varchar" MaxLength="50" />
+          <Property Name="ClientDateOfBirthday" Type="date" />
+          <Property Name="ClientMale" Type="int" />
+        </EntityType>
+        <EntityType Name="Male">
+          <Key>
+            <PropertyRef Name="MaleId" />
+          </Key>
+          <Property Name="MaleId" Type="int" Nullable="false" />
+          <Property Name="MaleName" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="orders">
           <Key>
@@ -52,19 +63,31 @@
           <Property Name="sername" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="last_name" Type="varchar" MaxLength="30" />
         </EntityType>
-        <Association Name="FK__orders__client_i__403A8C7D">
-          <End Role="clientes" Type="Self.clientes" Multiplicity="0..1" />
+        <Association Name="FK__Client__ClientMa__3C69FB99">
+          <End Role="Male" Type="Self.Male" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Male">
+              <PropertyRef Name="MaleId" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="ClientMale" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orders__client_i__534D60F1">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
           <End Role="orders" Type="Self.orders" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="clientes">
-              <PropertyRef Name="client_id" />
+            <Principal Role="Client">
+              <PropertyRef Name="ClientId" />
             </Principal>
             <Dependent Role="orders">
               <PropertyRef Name="client_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__orders__product___3F466844">
+        <Association Name="FK__orders__product___52593CB8">
           <End Role="products" Type="Self.products" Multiplicity="0..1" />
           <End Role="orders" Type="Self.orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -76,7 +99,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__orders__service___412EB0B6">
+        <Association Name="FK__orders__service___5441852A">
           <End Role="services" Type="Self.services" Multiplicity="0..1" />
           <End Role="orders" Type="Self.orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -88,7 +111,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__orders__staff_id__3E52440B">
+        <Association Name="FK__orders__staff_id__5165187F">
           <End Role="staffes" Type="Self.staffes" Multiplicity="0..1" />
           <End Role="orders" Type="Self.orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -101,24 +124,29 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище car_dealershipModelContainer">
-          <EntitySet Name="clientes" EntityType="Self.clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Male" EntityType="Self.Male" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="services" EntityType="Self.services" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="staffes" EntityType="Self.staffes" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__orders__client_i__403A8C7D" Association="Self.FK__orders__client_i__403A8C7D">
-            <End Role="clientes" EntitySet="clientes" />
+          <AssociationSet Name="FK__Client__ClientMa__3C69FB99" Association="Self.FK__Client__ClientMa__3C69FB99">
+            <End Role="Male" EntitySet="Male" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orders__client_i__534D60F1" Association="Self.FK__orders__client_i__534D60F1">
+            <End Role="Client" EntitySet="Client" />
             <End Role="orders" EntitySet="orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__orders__product___3F466844" Association="Self.FK__orders__product___3F466844">
+          <AssociationSet Name="FK__orders__product___52593CB8" Association="Self.FK__orders__product___52593CB8">
             <End Role="products" EntitySet="products" />
             <End Role="orders" EntitySet="orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__orders__service___412EB0B6" Association="Self.FK__orders__service___412EB0B6">
+          <AssociationSet Name="FK__orders__service___5441852A" Association="Self.FK__orders__service___5441852A">
             <End Role="services" EntitySet="services" />
             <End Role="orders" EntitySet="orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__orders__staff_id__3E52440B" Association="Self.FK__orders__staff_id__3E52440B">
+          <AssociationSet Name="FK__orders__staff_id__5165187F" Association="Self.FK__orders__staff_id__5165187F">
             <End Role="staffes" EntitySet="staffes" />
             <End Role="orders" EntitySet="orders" />
           </AssociationSet>
@@ -128,15 +156,28 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="car_dealershipModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="clientes">
+        <EntityType Name="Client">
           <Key>
-            <PropertyRef Name="client_id" />
+            <PropertyRef Name="ClientId" />
           </Key>
-          <Property Name="client_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="named" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="sername" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="last_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="orders" Relationship="Self.FK__orders__client_i__403A8C7D" FromRole="clientes" ToRole="orders" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ClientSername" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ClientLastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ClientPhoto" Type="Binary" MaxLength="1" FixedLength="true" />
+          <Property Name="ClientMail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ClientDateOfBirthday" Type="DateTime" Precision="0" />
+          <Property Name="ClientMale" Type="Int32" />
+          <NavigationProperty Name="Male" Relationship="Self.FK__Client__ClientMa__3C69FB99" FromRole="Client" ToRole="Male" />
+          <NavigationProperty Name="orders" Relationship="Self.FK__orders__client_i__534D60F1" FromRole="Client" ToRole="orders" />
+        </EntityType>
+        <EntityType Name="Male">
+          <Key>
+            <PropertyRef Name="MaleId" />
+          </Key>
+          <Property Name="MaleId" Type="Int32" Nullable="false" />
+          <Property Name="MaleName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__Client__ClientMa__3C69FB99" FromRole="Male" ToRole="Client" />
         </EntityType>
         <EntityType Name="orders">
           <Key>
@@ -148,10 +189,10 @@
           <Property Name="product_id" Type="Int32" />
           <Property Name="client_id" Type="Int32" />
           <Property Name="service_id" Type="Int32" />
-          <NavigationProperty Name="clientes" Relationship="Self.FK__orders__client_i__403A8C7D" FromRole="orders" ToRole="clientes" />
-          <NavigationProperty Name="products" Relationship="Self.FK__orders__product___3F466844" FromRole="orders" ToRole="products" />
-          <NavigationProperty Name="services" Relationship="Self.FK__orders__service___412EB0B6" FromRole="orders" ToRole="services" />
-          <NavigationProperty Name="staffes" Relationship="Self.FK__orders__staff_id__3E52440B" FromRole="orders" ToRole="staffes" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__orders__client_i__534D60F1" FromRole="orders" ToRole="Client" />
+          <NavigationProperty Name="products" Relationship="Self.FK__orders__product___52593CB8" FromRole="orders" ToRole="products" />
+          <NavigationProperty Name="services" Relationship="Self.FK__orders__service___5441852A" FromRole="orders" ToRole="services" />
+          <NavigationProperty Name="staffes" Relationship="Self.FK__orders__staff_id__5165187F" FromRole="orders" ToRole="staffes" />
         </EntityType>
         <EntityType Name="products">
           <Key>
@@ -161,7 +202,7 @@
           <Property Name="named" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="cost" Type="Int32" Nullable="false" />
           <Property Name="info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="orders" Relationship="Self.FK__orders__product___3F466844" FromRole="products" ToRole="orders" />
+          <NavigationProperty Name="orders" Relationship="Self.FK__orders__product___52593CB8" FromRole="products" ToRole="orders" />
         </EntityType>
         <EntityType Name="services">
           <Key>
@@ -171,7 +212,7 @@
           <Property Name="named" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="cost" Type="Int32" Nullable="false" />
           <Property Name="info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="orders" Relationship="Self.FK__orders__service___412EB0B6" FromRole="services" ToRole="orders" />
+          <NavigationProperty Name="orders" Relationship="Self.FK__orders__service___5441852A" FromRole="services" ToRole="orders" />
         </EntityType>
         <EntityType Name="staffes">
           <Key>
@@ -181,21 +222,33 @@
           <Property Name="named" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="sername" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="last_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="orders" Relationship="Self.FK__orders__staff_id__3E52440B" FromRole="staffes" ToRole="orders" />
+          <NavigationProperty Name="orders" Relationship="Self.FK__orders__staff_id__5165187F" FromRole="staffes" ToRole="orders" />
         </EntityType>
-        <Association Name="FK__orders__client_i__403A8C7D">
-          <End Role="clientes" Type="Self.clientes" Multiplicity="0..1" />
+        <Association Name="FK__Client__ClientMa__3C69FB99">
+          <End Role="Male" Type="Self.Male" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Male">
+              <PropertyRef Name="MaleId" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="ClientMale" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orders__client_i__534D60F1">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
           <End Role="orders" Type="Self.orders" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="clientes">
-              <PropertyRef Name="client_id" />
+            <Principal Role="Client">
+              <PropertyRef Name="ClientId" />
             </Principal>
             <Dependent Role="orders">
               <PropertyRef Name="client_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__orders__product___3F466844">
+        <Association Name="FK__orders__product___52593CB8">
           <End Role="products" Type="Self.products" Multiplicity="0..1" />
           <End Role="orders" Type="Self.orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -207,7 +260,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__orders__service___412EB0B6">
+        <Association Name="FK__orders__service___5441852A">
           <End Role="services" Type="Self.services" Multiplicity="0..1" />
           <End Role="orders" Type="Self.orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -219,7 +272,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__orders__staff_id__3E52440B">
+        <Association Name="FK__orders__staff_id__5165187F">
           <End Role="staffes" Type="Self.staffes" Multiplicity="0..1" />
           <End Role="orders" Type="Self.orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -232,24 +285,29 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="car_dealershipEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="clientes" EntityType="Self.clientes" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Male" EntityType="Self.Male" />
           <EntitySet Name="orders" EntityType="Self.orders" />
           <EntitySet Name="products" EntityType="Self.products" />
           <EntitySet Name="services" EntityType="Self.services" />
           <EntitySet Name="staffes" EntityType="Self.staffes" />
-          <AssociationSet Name="FK__orders__client_i__403A8C7D" Association="Self.FK__orders__client_i__403A8C7D">
-            <End Role="clientes" EntitySet="clientes" />
+          <AssociationSet Name="FK__Client__ClientMa__3C69FB99" Association="Self.FK__Client__ClientMa__3C69FB99">
+            <End Role="Male" EntitySet="Male" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orders__client_i__534D60F1" Association="Self.FK__orders__client_i__534D60F1">
+            <End Role="Client" EntitySet="Client" />
             <End Role="orders" EntitySet="orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__orders__product___3F466844" Association="Self.FK__orders__product___3F466844">
+          <AssociationSet Name="FK__orders__product___52593CB8" Association="Self.FK__orders__product___52593CB8">
             <End Role="products" EntitySet="products" />
             <End Role="orders" EntitySet="orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__orders__service___412EB0B6" Association="Self.FK__orders__service___412EB0B6">
+          <AssociationSet Name="FK__orders__service___5441852A" Association="Self.FK__orders__service___5441852A">
             <End Role="services" EntitySet="services" />
             <End Role="orders" EntitySet="orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__orders__staff_id__3E52440B" Association="Self.FK__orders__staff_id__3E52440B">
+          <AssociationSet Name="FK__orders__staff_id__5165187F" Association="Self.FK__orders__staff_id__5165187F">
             <End Role="staffes" EntitySet="staffes" />
             <End Role="orders" EntitySet="orders" />
           </AssociationSet>
@@ -260,13 +318,25 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище car_dealershipModelContainer" CdmEntityContainer="car_dealershipEntities1">
-          <EntitySetMapping Name="clientes">
-            <EntityTypeMapping TypeName="car_dealershipModel.clientes">
-              <MappingFragment StoreEntitySet="clientes">
-                <ScalarProperty Name="client_id" ColumnName="client_id" />
-                <ScalarProperty Name="named" ColumnName="named" />
-                <ScalarProperty Name="sername" ColumnName="sername" />
-                <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="car_dealershipModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClientSername" ColumnName="ClientSername" />
+                <ScalarProperty Name="ClientLastName" ColumnName="ClientLastName" />
+                <ScalarProperty Name="ClientPhoto" ColumnName="ClientPhoto" />
+                <ScalarProperty Name="ClientMail" ColumnName="ClientMail" />
+                <ScalarProperty Name="ClientDateOfBirthday" ColumnName="ClientDateOfBirthday" />
+                <ScalarProperty Name="ClientMale" ColumnName="ClientMale" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Male">
+            <EntityTypeMapping TypeName="car_dealershipModel.Male">
+              <MappingFragment StoreEntitySet="Male">
+                <ScalarProperty Name="MaleId" ColumnName="MaleId" />
+                <ScalarProperty Name="MaleName" ColumnName="MaleName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

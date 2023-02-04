@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using автомастерская.Properties;
 
 namespace автомастерская
 {
@@ -20,36 +23,48 @@ namespace автомастерская
     public partial class EditClientWindow : Window
     {
 
-        public clientes curentclient = new clientes();
+        public Client curentclient = new Client();
 
-        public EditClientWindow(clientes selectedClientes)
+        public EditClientWindow(Client selectedClientes)
         {
             InitializeComponent();
 
-            if (selectedClientes != null )
+            if (selectedClientes != null)
             {
-                curentclient= selectedClientes;
+                curentclient = selectedClientes;
             }
-            DataContext = curentclient;
+            else {
+                BitmapImage bit = new BitmapImage(new Uri("/Resources/Person1.png", UriKind.Relative));
+                Avatar.Source = bit;
+
+                DataContext = curentclient;
+                var allmales = car_dealershipEntities1.GetContext().Male.ToList();
+
+                ComboMale.ItemsSource = allmales;
+            }
+            
         }
 
         private void AcceptClientBtnClick(object sender, RoutedEventArgs e)
         {
             StringBuilder errrors = new StringBuilder();
 
-            if ((string.IsNullOrWhiteSpace(curentclient.named))){
+            if ((string.IsNullOrWhiteSpace(curentclient.ClientName))){
                 errrors.AppendLine("Укажите имя");
             }
-            if ((string.IsNullOrWhiteSpace(curentclient.sername))){
+            if ((string.IsNullOrWhiteSpace(curentclient.ClientSername))){
                 errrors.AppendLine("Укажите фамилию");
             }
 
             if (errrors.Length > 0)
             {
                 MessageBox.Show(errrors.ToString());
-            } else if (errrors.Length == 0){ 
-            
-                car_dealershipEntities1.GetContext().clientes.Add(curentclient);
+            }  
+
+            if (curentclient.ClientId == 0){
+                
+                curentclient.ClientDateOfBirthday = ClientData.SelectedDate;
+                car_dealershipEntities1.GetContext().Client.Add(curentclient);
 
                 try {
                     car_dealershipEntities1.GetContext().SaveChanges();
@@ -66,6 +81,29 @@ namespace автомастерская
         private void OutClientBtnClick(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
+        }
+
+        private void BtnEditImageClick(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+
+            ofd.Filter = "Image Files (*.BMP;*.JPG;*.Gif;*.PNG)| *.BMP;*.JPG;*.Gif;*.PNG| All files (*.*)|*.*";
+
+            if (ofd.ShowDialog() == true)
+            {
+                try {
+                    BitmapImage bit = new BitmapImage(new Uri(ofd.FileName));
+                    Avatar.Source = bit;
+                }    
+                catch {
+                    MessageBox.Show("Не возможно открыть выбранный файл!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        private void ComboBoxMaleSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
         }
     }
 }

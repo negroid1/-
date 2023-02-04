@@ -23,6 +23,28 @@ namespace автомастерская
         public staff()
         {
             InitializeComponent();
+            DGridstaff.ItemsSource = car_dealershipEntities1.GetContext().staffes.ToList();
+        }
+
+        private void AddStaffClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditStaffClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteStaffClick(object sender, RoutedEventArgs e)
+        {
+            var StaffForRemove = DGridstaff.SelectedItems.Cast<staffes>().ToList();
+
+            if (StaffForRemove != null) { 
+                car_dealershipEntities1.GetContext().staffes.RemoveRange(StaffForRemove); 
+                car_dealershipEntities1.GetContext().SaveChanges();
+                DGridstaff.ItemsSource = car_dealershipEntities1.GetContext().staffes.ToList();
+            }
         }
     }
 }

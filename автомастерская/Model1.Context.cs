@@ -21,11 +21,6 @@ namespace автомастерская
             : base("name=car_dealershipEntities1")
         {
         }
-    
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            throw new UnintentionalCodeFirstException();
-        }
 
         public static car_dealershipEntities1 GetContext()
         {
@@ -35,10 +30,18 @@ namespace автомастерская
             return _context;
         }
 
-        public virtual DbSet<clientes> clientes { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            throw new UnintentionalCodeFirstException();
+        }
+    
+        public virtual DbSet<Client> Client { get; set; }
+        public virtual DbSet<Male> Male { get; set; }
         public virtual DbSet<orders> orders { get; set; }
         public virtual DbSet<products> products { get; set; }
         public virtual DbSet<services> services { get; set; }
         public virtual DbSet<staffes> staffes { get; set; }
+
+
     }
 }

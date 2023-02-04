@@ -21,7 +21,7 @@ namespace автомастерская
         public Nullable<int> client_id { get; set; }
         public Nullable<int> service_id { get; set; }
     
-        public virtual clientes clientes { get; set; }
+        public virtual Client Client { get; set; }
         public virtual products products { get; set; }
         public virtual services services { get; set; }
         public virtual staffes staffes { get; set; }

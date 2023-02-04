@@ -83,11 +83,17 @@
     <Compile Include="add_service.xaml.cs">
       <DependentUpon>add_service.xaml</DependentUpon>
     </Compile>
-    <Compile Include="clientes.cs">
+    <Compile Include="Client.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="EditClientWindow.xaml.cs">
       <DependentUpon>EditClientWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditStaffWindow.xaml.cs">
+      <DependentUpon>EditStaffWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Male.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -134,6 +140,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditClientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditStaffWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -234,6 +244,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Person1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

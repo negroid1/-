@@ -12,20 +12,18 @@ namespace автомастерская
     using System;
     using System.Collections.Generic;
     
-    public partial class clientes
+    public partial class Male
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public clientes()
+        public Male()
         {
-            this.orders = new HashSet<orders>();
+            this.Client = new HashSet<Client>();
         }
     
-        public int client_id { get; set; }
-        public string named { get; set; }
-        public string sername { get; set; }
-        public string last_name { get; set; }
+        public int MaleId { get; set; }
+        public string MaleName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<orders> orders { get; set; }
+        public virtual ICollection<Client> Client { get; set; }
     }
 }

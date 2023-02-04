@@ -4,16 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="21364df3158b498f86a3d9b90ab50c0e" Name="Diagram1">
-        <EntityTypeShape EntityType="car_dealershipModel.clientes" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="car_dealershipModel.orders" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="car_dealershipModel.products" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="car_dealershipModel.services" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="car_dealershipModel.staffes" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
-        <AssociationConnector Association="car_dealershipModel.FK__orders__client_i__403A8C7D" ManuallyRouted="false" />
-        <AssociationConnector Association="car_dealershipModel.FK__orders__product___3F466844" ManuallyRouted="false" />
-        <AssociationConnector Association="car_dealershipModel.FK__orders__service___412EB0B6" ManuallyRouted="false" />
-        <AssociationConnector Association="car_dealershipModel.FK__orders__staff_id__3E52440B" ManuallyRouted="false" />
+      <Diagram DiagramId="da9f3bde8e4748f99c9aa51c00190772" Name="Diagram1">
+        <EntityTypeShape EntityType="car_dealershipModel.Client" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="car_dealershipModel.Male" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="car_dealershipModel.orders" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="car_dealershipModel.products" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="car_dealershipModel.services" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="car_dealershipModel.staffes" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <AssociationConnector Association="car_dealershipModel.FK__Client__ClientMa__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="car_dealershipModel.FK__orders__client_i__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="car_dealershipModel.FK__orders__product___52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="car_dealershipModel.FK__orders__service___5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="car_dealershipModel.FK__orders__staff_id__5165187F" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

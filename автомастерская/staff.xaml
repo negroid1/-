@@ -9,10 +9,22 @@
       Title="staff">
 
     <Grid>
-        <TextBlock Text="Сотрудники" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="25" FontFamily="Tw Cen MT" Margin="60 0 0 0"></TextBlock>
-        <Button Name="add_staff" Content="Добавить" HorizontalAlignment="Right" Margin="0 40 500 0"></Button>
-        <Button Name="delete_staff" Content="Удалить" HorizontalAlignment="Right" Margin="0 40 340 0"></Button>
-        <Button Name="edit_staff" Content="Редактировать" HorizontalAlignment="Right" Margin="0 40 180 0"></Button>
-        <Button Name="refresh_staff" Content="Обновить" HorizontalAlignment="Right" Margin="0 40 40 0"></Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Персонал" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="25" FontFamily="Tw Cen MT" Margin="380,0,0,0" Grid.Row="0"></TextBlock>
+        <Button Name="AddStaffBtn" Content="Добавить" HorizontalAlignment="Right" Margin="0 40 500 0" Grid.Row="0" Click="AddStaffClick"></Button>
+        <Button Name="DeleteAddStaffBtn" Content="Удалить" HorizontalAlignment="Right" Margin="0 40 340 0" Grid.Row="0" Click="DeleteStaffClick"></Button>
+        <Button Name="EditAddStaffBtn" Content="Редактировать" HorizontalAlignment="Right" Margin="0 40 180 0" Grid.Row="0" Click="EditStaffClick"></Button>
+        <Button Name="RefreshAddStaffBtn" Content="Обновить" HorizontalAlignment="Right" Margin="0 40 40 0" Grid.Row="0"></Button>
+        <DataGrid x:Name="DGridstaff" Grid.Row="1" Margin= "0 0 20 0 " AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер клиента" Binding="{Binding client_id}" Width="100"></DataGridTextColumn>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding named}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Имя" Binding="{Binding sername}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding last_name}" Width="*"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

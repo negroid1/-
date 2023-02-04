@@ -13,17 +13,28 @@
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Клиенты" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="25" FontFamily="Tw Cen MT" Margin="380,0,0,0" Grid.Row="0"></TextBlock>
-        <Button Name="btn_add_service" Content="Добавить" HorizontalAlignment="Right" Margin="0 40 500 0" Grid.Row="0" Click="AddClientClick"></Button>
-        <Button Name="delete_service" Content="Удалить" HorizontalAlignment="Right" Margin="0 40 340 0" Grid.Row="0" Click="DeleteClientClick"></Button>
-        <Button Name="edit_service" Content="Редактировать" HorizontalAlignment="Right" Margin="0 40 180 0" Grid.Row="0" Click="EditClientClick"></Button>
-        <Button Name="refresh_service" Content="Обновить" HorizontalAlignment="Right" Margin="0 40 40 0" Grid.Row="0"></Button>
-        <DataGrid x:Name="DGridclient" Grid.Row="1" Margin= "0 0 20 0 " AutoGenerateColumns="False" IsReadOnly="True">
+        <TextBlock Text="Клиенты" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="25" FontFamily="Tw Cen MT" Grid.Row="0"></TextBlock>
+        <TextBox  TextChanged="TextBoxClientTextChanged" Name ="TextBoxSearchClient"  HorizontalAlignment="Left" Margin="0 30 0 0" Height="30" Width="230" Grid.Row="0"></TextBox>
+        <Button Name="AddClientBtn" Content="Добавить" HorizontalAlignment="Right" Margin="0 40 290 0" Grid.Row="0" Click="AddClientClick"></Button>
+        <Button Name="DeleteClientBtn" Content="Удалить" HorizontalAlignment="Right" Margin="0 40 150 0" Grid.Row="0" Click="DeleteClientClick"></Button>
+        <Button Name="EditClientBtn" Content="Редактировать" HorizontalAlignment="Right" Margin="0 40 10 0" Grid.Row="0" Click="EditClientClick"></Button>
+        <DataGrid x:Name="DGridclient" Grid.Row="1" Margin= "0 0 10 0 " AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Номер клиента" Binding="{Binding client_id}" Width="100"></DataGridTextColumn>
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding named}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Имя" Binding="{Binding sername}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Отчество" Binding="{Binding last_name}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="№" Binding="{Binding ClientId}" Width="28"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Фотография" Width="130">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding ClientPhoto}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Ф.И.О" Binding="{Binding FullName}" Width="150"></DataGridTextColumn>
+                <DataGridTextColumn Header="Пол" Binding="{Binding ClientMale}" Width="50"></DataGridTextColumn>
+                <DataGridTextColumn Header="Почта" Binding="{Binding ClientMail}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding ClientTel}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата рождения" Binding="{Binding ClientDateOfBirthday}" Width="*"></DataGridTextColumn>
+
+                
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
