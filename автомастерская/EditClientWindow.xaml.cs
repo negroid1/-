@@ -55,7 +55,7 @@ namespace автомастерская
             }
             if ((string.IsNullOrWhiteSpace(curentclient.ClientSername)))
             {
-                errrors.AppendLine("Укажите имя");
+                errrors.AppendLine("Укажите Фамилию");
             }
             if (curentclient.ClientMale == null)
             {
@@ -63,9 +63,11 @@ namespace автомастерская
             }
             if (curentclient.ClientDateOfBirthday == null)
             {
-                errrors.AppendLine("Укажите пол");
+                errrors.AppendLine("Укажите дату рождения");
             }
-
+            if ((curentclient.ClientMail.Contains("@mail") == false && curentclient.ClientMail.Contains("@gmail")) || (curentclient.ClientMail.Contains(".ru") == false && curentclient.ClientMail.Contains(".com") == false)) {
+                errrors.AppendLine("Неверно указан адрес электронной почты");
+            }
 
             if (errrors.Length > 0)
             {
@@ -118,19 +120,19 @@ namespace автомастерская
 
         private void TextBoxTelSelectionChanged(object sender, RoutedEventArgs e)
         {
-            string tempstr = "";
-            foreach (char sym in TelBox.Text)
-            {
-                if (TextBoxСheck(sym.ToString()))
-                    tempstr += sym.ToString();
-            }
-            TelBox.Text = tempstr;
-            TelBox.SelectionStart = TelBox.SelectionLength;
-        }
+            String NewTextContent = "";
+            String TextBoxContent = TelBox.Text;
+            var symbols = new Regex(@"[+()0-9\s]");
 
-        private bool TextBoxСheck(string text)
-        {
-            return new Regex("[1-9], /, +").IsMatch(text);
+            string newTextContent = NewTextContent;
+            foreach (char letter in TextBoxContent) {
+
+                if (symbols.IsMatch(letter.ToString())) {
+                    newTextContent += letter;
+                }
+            }
+
+            TelBox.Text = newTextContent;
         }
     }
 }
