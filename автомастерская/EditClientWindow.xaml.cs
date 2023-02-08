@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -52,15 +53,24 @@ namespace автомастерская
             if ((string.IsNullOrWhiteSpace(curentclient.ClientName))){
                 errrors.AppendLine("Укажите имя");
             }
-            if ((string.IsNullOrWhiteSpace(curentclient.ClientSername))){
-                errrors.AppendLine("Укажите фамилию");
+            if ((string.IsNullOrWhiteSpace(curentclient.ClientSername)))
+            {
+                errrors.AppendLine("Укажите имя");
             }
+            if (curentclient.ClientMale == null)
+            {
+                errrors.AppendLine("Укажите пол");
+            }
+            if (curentclient.ClientDateOfBirthday == null)
+            {
+                errrors.AppendLine("Укажите пол");
+            }
+
 
             if (errrors.Length > 0)
             {
                 MessageBox.Show(errrors.ToString());
             }  
-
             if (curentclient.ClientId == 0){
                 
                 curentclient.ClientDateOfBirthday = ClientData.SelectedDate;
@@ -103,7 +113,24 @@ namespace автомастерская
 
         private void ComboBoxMaleSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
+        }
+
+        private void TextBoxTelSelectionChanged(object sender, RoutedEventArgs e)
+        {
+            string tempstr = "";
+            foreach (char sym in TelBox.Text)
+            {
+                if (TextBoxСheck(sym.ToString()))
+                    tempstr += sym.ToString();
+            }
+            TelBox.Text = tempstr;
+            TelBox.SelectionStart = TelBox.SelectionLength;
+        }
+
+        private bool TextBoxСheck(string text)
+        {
+            return new Regex("[1-9], /, +").IsMatch(text);
         }
     }
 }

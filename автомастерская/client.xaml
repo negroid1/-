@@ -29,10 +29,10 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Ф.И.О" Binding="{Binding FullName}" Width="150"></DataGridTextColumn>
-                <DataGridTextColumn Header="Пол" Binding="{Binding ClientMale}" Width="50"></DataGridTextColumn>
+                <DataGridTextColumn Header="Пол" Binding="{Binding Male.MaleName}" Width="50"></DataGridTextColumn>
                 <DataGridTextColumn Header="Почта" Binding="{Binding ClientMail}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Телефон" Binding="{Binding ClientTel}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Дата рождения" Binding="{Binding ClientDateOfBirthday}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата рождения" Binding="{Binding ClientDateOfBirthday, StringFormat= dd.MM.yyyy}" Width="*"></DataGridTextColumn>
 
                 
             </DataGrid.Columns>

@@ -12,19 +12,19 @@
         <Button Content="Изменить" Name="BtnEditImage" Margin="115 145" Click="BtnEditImageClick"></Button>
 
         <TextBlock Text="Фамилия" Width="100" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 10 103 0"></TextBlock>
-        <TextBox  Text ="{Binding ClientSername}" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right"  Margin="0 30 15 0"></TextBox>
+        <TextBox  Text ="{Binding ClientSername}" MaxLength="50" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right"  Margin="0 30 15 0"></TextBox>
         <TextBlock Text="Имя" Width="100" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 60 103 0"></TextBlock>
-        <TextBox  Text ="{Binding ClientName}" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right"  Margin="0 80 15 0"></TextBox>
+        <TextBox  Text ="{Binding ClientName}" MaxLength="50" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right"  Margin="0 80 15 0"></TextBox>
         <TextBlock Text="Отчество" Width="100" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 110 103 0"></TextBlock>
-        <TextBox  Text ="{Binding ClientLastName}" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right"  Margin="0 130 15 0"></TextBox>
+        <TextBox  Text ="{Binding ClientLastName}" MaxLength="50" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right"  Margin="0 130 15 0"></TextBox>
         
         <TextBlock Text="Пол" Width="70" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5 180 0 0"></TextBlock>
-        <ComboBox Name="ComboMale" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="60 180 0 0" SelectionChanged="ComboBoxMaleSelectionChanged"  ></ComboBox>
+        <ComboBox Text="{Binding MaleName}"  Name="ComboMale" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="60 180 0 0" SelectionChanged="ComboBoxMaleSelectionChanged"  ></ComboBox>
         
         <TextBlock Text="Почта" Width="100" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 185 173 0"></TextBlock>
-        <TextBox   Text ="{Binding Male.MaleName}" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right"  Margin="0 180 15 0"></TextBox>
+        <TextBox   Text ="{Binding ClientMail}" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right"  Margin="0 180 15 0"></TextBox>
         <TextBlock Text="Телефон" Width="100" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5 230 0 0"></TextBlock>
-        <TextBox   Text ="{Binding ClientTel}" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="60 230 0 0"></TextBox>
+        <TextBox  Name="TelBox" SelectionChanged="TextBoxTelSelectionChanged" Text ="{Binding ClientTel}" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="60 230 0 0"></TextBox>
         <DatePicker Name ="ClientData" Text ="{Binding ClientDateOfBirthday}" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right"  Margin="0 230 15 0"> </DatePicker>
         <TextBlock  TextAlignment="Left" Width="100" Height="33" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 230 173 0">Дата <LineBreak/> рождения</TextBlock>
        
