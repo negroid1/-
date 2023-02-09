@@ -25,6 +25,8 @@ namespace автомастерская
         {
             InitializeComponent();
             DGridclient.ItemsSource = car_dealershipEntities1.GetContext().Client.ToList();
+
+
         }
 
         private void AddClientClick(object sender, RoutedEventArgs e)
@@ -42,7 +44,7 @@ namespace автомастерская
             var ClientsForRemove = DGridclient.SelectedItems.Cast<Client>().ToList();
 
             if (MessageBox.Show($"Вы точно хотите удалить следующих клиентов {ClientsForRemove.Count()}", "Внимание",
-                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes) 
+                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 try
                 {
@@ -55,7 +57,7 @@ namespace автомастерская
                 {
                     MessageBox.Show(ex.Message.ToString());
                 }
-            
+
             }
         }
 
@@ -88,6 +90,61 @@ namespace автомастерская
                 DGridclient.ItemsSource = null;
 
                 DGridclient.ItemsSource = curentclient.Where(p => p.FullName.ToLower().Contains(TextBoxSearchClient.Text.ToLower())).ToList();
+
+            }
+        }
+
+        private void ManCheckCheked(object sender, RoutedEventArgs e)
+        {
+            WomanCheck.IsChecked = false;
+            UpdateClients();
+
+
+        }
+
+        private void WomanCheckCheked(object sender, RoutedEventArgs e)
+        {
+            ManCheck.IsChecked = false;
+            UpdateClients();
+        }
+
+        private void TelCheckCheked(object sender, RoutedEventArgs e)
+        {
+            UpdateClients();
+        }
+
+        private void MailCheckCheked(object sender, RoutedEventArgs e)
+        {
+            UpdateClients();
+        }
+
+        private void UpdateClients()
+        {
+            var curentclients = car_dealershipEntities1.GetContext().Client.ToList();
+
+            if (ManCheck.IsChecked == true)
+            {
+                curentclients = curentclients.Where(p => p.ClientMale == 1).ToList();
+            }
+            if (WomanCheck.IsChecked == true)
+            {
+                curentclients = curentclients.Where(p => p.ClientMale == 2).ToList();
+            }
+            if (TelCheck.IsChecked == true)
+            {
+                curentclients = curentclients.Where(p => p.ClientTel != null).ToList();
+            }
+            if (MailCheck.IsChecked == true)
+            {
+                curentclients = curentclients.Where(p => p.ClientMail != null).ToList();
+            }
+            if (TextBoxSearchClient.Text == "")
+                DGridclient.ItemsSource = curentclients;
+            else
+            {
+                DGridclient.ItemsSource = null;
+
+                DGridclient.ItemsSource = curentclients.Where(p => p.FullName.ToLower().Contains(TextBoxSearchClient.Text.ToLower())).ToList();
 
             }
         }

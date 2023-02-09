@@ -38,12 +38,10 @@ namespace автомастерская
                 BitmapImage bit = new BitmapImage(new Uri("/Resources/Person1.png", UriKind.Relative));
                 Avatar.Source = bit;
 
-                DataContext = curentclient;
-                var allmales = car_dealershipEntities1.GetContext().Male.ToList();
-
-                ComboMale.ItemsSource = allmales;
             }
-            
+            ComboMale.ItemsSource = car_dealershipEntities1.GetContext().Male.ToList();
+            DataContext = curentclient;
+
         }
 
         private void AcceptClientBtnClick(object sender, RoutedEventArgs e)
@@ -57,14 +55,14 @@ namespace автомастерская
             {
                 errrors.AppendLine("Укажите Фамилию");
             }
-            if (curentclient.ClientMale == null)
+            /*if (curentclient.ClientMale == null)
             {
                 errrors.AppendLine("Укажите пол");
-            }
-            if (curentclient.ClientDateOfBirthday == null)
+            }*/
+            /*if (curentclient.ClientDateOfBirthday == null)
             {
                 errrors.AppendLine("Укажите дату рождения");
-            }
+            }*/
             if ((curentclient.ClientMail.Contains("@mail") == false && curentclient.ClientMail.Contains("@gmail")) || (curentclient.ClientMail.Contains(".ru") == false && curentclient.ClientMail.Contains(".com") == false)) {
                 errrors.AppendLine("Неверно указан адрес электронной почты");
             }
@@ -72,8 +70,10 @@ namespace автомастерская
             if (errrors.Length > 0)
             {
                 MessageBox.Show(errrors.ToString());
+                return;
             }  
-            if (curentclient.ClientId == 0){
+            if (curentclient.ClientId == 0)
+            {
                 
                 curentclient.ClientDateOfBirthday = ClientData.SelectedDate;
                 car_dealershipEntities1.GetContext().Client.Add(curentclient);
@@ -111,11 +111,6 @@ namespace автомастерская
                     MessageBox.Show("Не возможно открыть выбранный файл!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-        }
-
-        private void ComboBoxMaleSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
         private void TextBoxTelSelectionChanged(object sender, RoutedEventArgs e)

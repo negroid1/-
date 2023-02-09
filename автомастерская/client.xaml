@@ -14,10 +14,16 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBlock Text="Клиенты" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="25" FontFamily="Tw Cen MT" Grid.Row="0"></TextBlock>
-        <TextBox  TextChanged="TextBoxClientTextChanged" Name ="TextBoxSearchClient"  HorizontalAlignment="Left" Margin="0 30 0 0" Height="30" Width="230" Grid.Row="0"></TextBox>
-        <Button Name="AddClientBtn" Content="Добавить" HorizontalAlignment="Right" Margin="0 40 290 0" Grid.Row="0" Click="AddClientClick"></Button>
-        <Button Name="DeleteClientBtn" Content="Удалить" HorizontalAlignment="Right" Margin="0 40 150 0" Grid.Row="0" Click="DeleteClientClick"></Button>
+        <TextBox  TextChanged="TextBoxClientTextChanged" Name ="TextBoxSearchClient"  HorizontalAlignment="Left" Margin="0 30 0 0" Height="30" Width="200" Grid.Row="0"></TextBox>
+        <Button Name="AddClientBtn" Content="Добавить" HorizontalAlignment="Right" Margin="0 40 230 0" Grid.Row="0" Click="AddClientClick"></Button>
+        <Button Name="DeleteClientBtn" Content="Удалить" HorizontalAlignment="Right" Margin="0 40 120 0" Grid.Row="0" Click="DeleteClientClick"></Button>
         <Button Name="EditClientBtn" Content="Редактировать" HorizontalAlignment="Right" Margin="0 40 10 0" Grid.Row="0" Click="EditClientClick"></Button>
+        <ComboBox  HorizontalAlignment="Right" Height="30" Width="180" Margin="0 30 345 0" Grid.Row="0">
+            <CheckBox x:Name="ManCheck" Content="Мужчина" Checked="ManCheckCheked" Unchecked="ManCheckCheked"></CheckBox>
+            <CheckBox x:Name="WomanCheck" Content="Женщина" Checked="WomanCheckCheked" Unchecked="WomanCheckCheked"></CheckBox>
+            <CheckBox x:Name="TelCheck" Content="Телефон" Checked="TelCheckCheked" Unchecked="TelCheckCheked"></CheckBox>
+            <CheckBox x:Name="MailCheck" Content="mail" Checked="MailCheckCheked" Unchecked="MailCheckCheked"></CheckBox>
+        </ComboBox>
         <DataGrid x:Name="DGridclient" Grid.Row="1" Margin= "0 0 10 0 " AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№" Binding="{Binding ClientId}" Width="28"></DataGridTextColumn>

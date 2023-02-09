@@ -19,7 +19,7 @@
         <TextBox  Text ="{Binding ClientLastName}" MaxLength="50" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right"  Margin="0 130 15 0"></TextBox>
         
         <TextBlock Text="Пол" Width="70" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5 180 0 0"></TextBlock>
-        <ComboBox Text="{Binding MaleName}"  Name="ComboMale" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="60 180 0 0" SelectionChanged="ComboBoxMaleSelectionChanged"  ></ComboBox>
+        <ComboBox DisplayMemberPath="MaleName" SelectedItem="{Binding Male}"  Name="ComboMale" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="60 180 0 0"></ComboBox>
         
         <TextBlock Text="Почта" Width="100" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 185 173 0"></TextBlock>
         <TextBox   Text ="{Binding ClientMail}" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right"  Margin="0 180 15 0"></TextBox>
